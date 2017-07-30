@@ -47,19 +47,19 @@ route.post('/token', passport.authenticate('local'), (req, res) => {
     })
 
 });
-
-// Implement this if possible (To rsvp users)
-route.get('/rsvp/:token', (req, res) => {
-    EventInvitee.update( {
-        rsvp: req.query.rsvp
-    }, {
-        where: {
-            token: req.params.token
-        }
-    })
-});
-
-'http://localhost:3456/rsvp/kahsfiasy?rsvp=true'
-'http://localhost:3456/rsvp/kahsfiasy?rsvp=false'
+//
+// // Implement this if possible (To rsvp users)
+// route.get('/rsvp/:token', (req, res) => {
+//     EventInvitee.update( {
+//         rsvp: req.query.rsvp
+//     }, {
+//         where: {
+//             token: req.params.token
+//         }
+//     })
+// });
+// //
+// // 'http://localhost:3456/rsvp/kahsfiasy?rsvp=true'
+// // 'http://localhost:3456/rsvp/kahsfiasy?rsvp=false'
 
 module.exports = route;

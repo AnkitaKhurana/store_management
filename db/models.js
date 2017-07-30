@@ -42,10 +42,9 @@ db.sync()
         console.log("Error setting up Database");
         console.error(err);
     });
-
 module.exports = {
-    db,
-    models: {
-        Footwear,
-        User    }
-};
+    User,Footwear
+
+    };
+
+
