@@ -30,6 +30,7 @@ const User = db.define('user', {
         primaryKey: true,
         autoIncrement: true
     },
+    email : Sequelize.STRING,
     username: Sequelize.STRING,
     password: Sequelize.STRING
 });

@@ -2,7 +2,7 @@ const router = require('express').Router;
 
 const route = router();
 
-route.use('/new', require('./new'));
+route.use('/footwear', require('./footwear'));
 route.use('/users', require('./users'));
 
 
