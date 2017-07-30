@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const db = new Sequelize('store', 'storeadmin', 'storepass', {
+const db = new Sequelize('store', 'root', '1234', {
     host: 'localhost',
     dialect: 'mysql'
 });
@@ -24,7 +24,7 @@ const Footwear = db.define('footwear', {
     material : Sequelize.STRING
 
 });
-const UserLocal = db.define('userlocal', {
+const User = db.define('user', {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -47,6 +47,5 @@ module.exports = {
     db,
     models: {
         Footwear,
-        UserLocal
-    }
+        User    }
 };
