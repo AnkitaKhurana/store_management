@@ -63,6 +63,7 @@ route.post('/new', (req, res) => {
         updatedAt: new Date(req.body.updatedAt )
 
     }).then((event) => {
+
         //res.status(200).send(event)
 
         if (req.body.invitees) {
