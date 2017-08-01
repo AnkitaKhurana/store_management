@@ -4,7 +4,7 @@ const authUtils = require('../../auth/utils');
 const Footwear = require('../../db/models').Footwear;
 const User = require('../../db/models').User;
 
-route.get('/', authUtils.eia(), (req, res) => {
+route.get('/', authUtils.eli(), (req, res) => {
     console.log(req.user);
     Footwear.findAll({
         attributes: ['f_id', 'article_no' ],
@@ -18,7 +18,7 @@ route.get('/', authUtils.eia(), (req, res) => {
         })
 });
 
-route.get('/:id', (req, res) => {
+route.get('/:id', authUtils.eli(), (req, res) => {
     Footwear.findOne({
         where: {
             f_id: req.params.id
@@ -40,7 +40,7 @@ route.get('/:id', (req, res) => {
 });
 
 
-route.post('/new', authUtils.eia(), (req, res) => {
+route.post('/new', authUtils.eli(), (req, res) => {
     //Add server-side validations if required here
     if (!req.body.article_no) {
         return res.status(403).send('Event cannot created without article name')
@@ -74,7 +74,7 @@ route.post('/new', authUtils.eia(), (req, res) => {
 });
 
 
-route.put('/:id', authUtils.eia(), (req, res) => {
+route.put('/:id', authUtils.eli(), (req, res) => {
     Footwear.update({
             article_no : req.body.article_no,
             category : req.body.category,
@@ -111,7 +111,7 @@ route.put('/:id', authUtils.eia(), (req, res) => {
 
 
 
-route.delete('/:id', authUtils.eia(), (req, res) => {
+route.delete('/:id', authUtils.eli(), (req, res) => {
    Footwear.destroy(
         {
             where: {
@@ -129,7 +129,7 @@ route.delete('/:id', authUtils.eia(), (req, res) => {
 });
 
 
-route.put('/:id/1', authUtils.eia(), (req, res) => {
+route.put('/1/:id', authUtils.eli(), (req, res) => {
     var qt = req.body.quantity;
     qt++;
     Footwear.update({
@@ -154,7 +154,7 @@ route.put('/:id/1', authUtils.eia(), (req, res) => {
 
     })
 });
-route.put('/:id/0', authUtils.eia(), (req, res) => {
+route.put('/0/:id', authUtils.eli(), (req, res) => {
     var qt = req.body.quantity;
     qt--;
     if(qt<0)

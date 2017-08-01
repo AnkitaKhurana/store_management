@@ -15,6 +15,7 @@ function ensureLoggedIn(redirPath) {
 function ensureAdmin() {
     return function (req, res, next) {
         req.userIsAdmin = !req.user.roleId != 4;
+        console.log(req);
         next();
 
     }
