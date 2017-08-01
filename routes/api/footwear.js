@@ -129,7 +129,7 @@ route.delete('/:id', authUtils.eia(), (req, res) => {
 });
 
 
-route.put('/:id/:1', authUtils.eia(), (req, res) => {
+route.put('/:id/1', authUtils.eia(), (req, res) => {
     var qt = req.body.quantity;
     qt++;
     Footwear.update({
@@ -154,13 +154,11 @@ route.put('/:id/:1', authUtils.eia(), (req, res) => {
 
     })
 });
-route.put('/:id/:0', authUtils.eia(), (req, res) => {
+route.put('/:id/0', authUtils.eia(), (req, res) => {
     var qt = req.body.quantity;
     qt--;
     if(qt<0)
         qt = 0 ;
-
-
     Footwear.update({
 
             quantity:qt,
