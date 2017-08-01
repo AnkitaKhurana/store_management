@@ -87,7 +87,7 @@ route.put('/:id', authUtils.eia(), (req, res) => {
             date_brought: req.body.date_brought,
             date_sold : req.body.date_sold,
             quantity:req.body.quantity,
-            createdAt: new Date(req.body.createdAt),
+
             updatedAt: new Date(req.body.updatedAt ),
 
             startTime: req.body.startTime ? new Date(req.body.startTime) : undefined,
@@ -128,5 +128,31 @@ route.delete('/:id', authUtils.eia(), (req, res) => {
     })
 });
 
+
+route.put('/:id/:1', authUtils.eia(), (req, res) => {
+    var qt = req.body.quantity;
+    qt++;
+    Footwear.update({
+
+            quantity:qt,
+
+            updatedAt: new Date(req.body.updatedAt ),
+
+
+        },
+        {
+            where: {
+                f_id: req.params.id
+
+            }
+        }).then((updatedShoe) => {
+        if (updatedShoe[0] == 0) {
+            return res.status(403).send('Footwear does not exist, or you cannot edit it')
+        } else {
+            res.status(200).send('Footwear successfully edited')
+        }
+
+    })
+});
 
 module.exports = route;
