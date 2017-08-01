@@ -154,5 +154,34 @@ route.put('/:id/:1', authUtils.eia(), (req, res) => {
 
     })
 });
+route.put('/:id/:0', authUtils.eia(), (req, res) => {
+    var qt = req.body.quantity;
+    qt--;
+    if(qt<0)
+        qt = 0 ;
+
+
+    Footwear.update({
+
+            quantity:qt,
+
+            updatedAt: new Date(req.body.updatedAt ),
+
+
+        },
+        {
+            where: {
+                f_id: req.params.id
+
+            }
+        }).then((updatedShoe) => {
+        if (updatedShoe[0] == 0) {
+            return res.status(403).send('Footwear does not exist, or you cannot edit it')
+        } else {
+            res.status(200).send('Footwear successfully edited')
+        }
+
+    })
+});
 
 module.exports = route;
