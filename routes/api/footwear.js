@@ -4,7 +4,7 @@ const authUtils = require('../../auth/utils');
 const Footwear = require('../../db/models').Footwear;
 const User = require('../../db/models').User;
 
-route.get('/', (req, res) => {
+route.get('/', authUtils.eia(), (req, res) => {
     console.log(req.user);
     Footwear.findAll({
         attributes: ['f_id', 'article_no' ],
@@ -40,9 +40,9 @@ route.get('/:id', (req, res) => {
 });
 
 
-route.post('/new', (req, res) => {
+route.post('/new', authUtils.eia(), (req, res) => {
     //Add server-side validations if required here
-    if (!req.body.article_name) {
+    if (!req.body.article_no) {
         return res.status(403).send('Event cannot created without article name')
     }
 
@@ -62,47 +62,71 @@ route.post('/new', (req, res) => {
         createdAt: new Date(req.body.createdAt),
         updatedAt: new Date(req.body.updatedAt )
 
-    }).then((event) => {
+    }).then((shoe) => {
 
         //res.status(200).send(event)
+          res.status(200).send(shoe)
 
-        if (req.body.invitees) {
-            let invitees = req.body.invitees.split(';');
-            invitees = invitees.map((i) => {
-                return {email: i.trim()}
-            });
-            Invitee.bulkCreate(invitees, {
-                ignoreDuplicates: true
-            })
-                .then((invitees) => {
-                    let eventInvitee = invitees.map((i) => {
-                        return {
-                            eventId: event.id,
-                            inviteeId: i.id
-                        }
-                    });
-
-                    EventInvitee.bulkCreate(eventInvitee, {
-                        ignoreDuplicates: true
-                    })
-                        .then((eiArr) => {
-                            res.status(200).send(event)
-                            let emailArr = invitees.map((i) => i.email);
-                            im.sendInvite(emailArr, function () {
-                                console.log('Invites are sent');
-                            });
-
-                        })
-                })
-        } else {
-            res.status(200).send(event)
-        }
     }).catch((err) => {
         res.status(500).send(err.message)
 
     })
 });
 
+
+route.put('/:id', authUtils.eia(), (req, res) => {
+    Footwear.update({
+            article_no : req.body.article_no,
+            category : req.body.category,
+            size : req.body.size,
+            colour : req.body.colour,
+            brand : req.body.brand,
+            imgurl: req.body.imgurl,
+            type : req.body.type,
+            material : req.body.material,
+            date_brought: req.body.date_brought,
+            date_sold : req.body.date_sold,
+            quantity:req.body.quantity,
+            createdAt: new Date(req.body.createdAt),
+            updatedAt: new Date(req.body.updatedAt ),
+
+            startTime: req.body.startTime ? new Date(req.body.startTime) : undefined,
+            endTime: req.body.endTime ? new Date(req.body.endTime) : undefined
+
+        },
+        {
+            where: {
+                f_id: req.params.id
+
+            }
+        }).then((updatedShoe) => {
+        if (updatedShoe[0] == 0) {
+            return res.status(403).send('Footwear does not exist, or you cannot edit it')
+        } else {
+            res.status(200).send('Footwear successfully edited')
+        }
+
+    })
+});
+
+
+
+route.delete('/:id', authUtils.eia(), (req, res) => {
+   Footwear.destroy(
+        {
+            where: {
+                f_id: req.params.id,
+
+            }
+        }).then((destroyedRows) => {
+        if (destroyedRows == 0) {
+            return res.status(403).send('Footwear does not exist, or you cannot edit it')
+        } else {
+            res.status(200).send('Footwear successfully deleted')
+        }
+
+    })
+});
 
 
 module.exports = route;
