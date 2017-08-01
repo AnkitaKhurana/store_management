@@ -20,7 +20,7 @@ const Footwear = db.define('footwear', {
     imgurl : Sequelize.STRING,
     type  : Sequelize.STRING,
     article_no : Sequelize.STRING,
-    quantity : Sequelize.INTEGER,
+    quantity : {type: Sequelize.INTEGER,allowNull: false },
     material : Sequelize.STRING
 
 });

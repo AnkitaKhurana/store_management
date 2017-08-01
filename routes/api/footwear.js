@@ -1,4 +1,4 @@
-
+var sequelize = require('sequelize');
 const route = require('express').Router();
 const authUtils = require('../../auth/utils');
 const Footwear = require('../../db/models').Footwear;
@@ -129,12 +129,11 @@ route.delete('/:id', authUtils.eli(), (req, res) => {
 });
 
 
-route.put('/1/:id', authUtils.eli(), (req, res) => {
-    var qt = req.body.quantity;
-    qt++;
+route.put('/add/:id', authUtils.eli(), (req, res) => {
+
     Footwear.update({
 
-            quantity:qt,
+           quantity:sequelize.literal('quantity +1'),
 
             updatedAt: new Date(req.body.updatedAt ),
 
@@ -154,14 +153,12 @@ route.put('/1/:id', authUtils.eli(), (req, res) => {
 
     })
 });
-route.put('/0/:id', authUtils.eli(), (req, res) => {
-    var qt = req.body.quantity;
-    qt--;
-    if(qt<0)
-        qt = 0 ;
+
+route.put('/del/:id', authUtils.eli(), (req, res) => {
+
     Footwear.update({
 
-            quantity:qt,
+            quantity:sequelize.literal('quantity -1'),
 
             updatedAt: new Date(req.body.updatedAt ),
 
