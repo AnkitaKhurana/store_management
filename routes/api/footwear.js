@@ -155,31 +155,33 @@ route.put('/add/:id', authUtils.eli(), (req, res) => {
 });
 
 route.put('/del/:id', authUtils.eli(), (req, res) => {
-    let qt=0;
+     let qt;
     Footwear.findOne({
+
+
         where: {
             f_id: req.params.id
-        }
-    })
-        .then((res) => {
-            if (!res) {
-                console.log(res);
-                return res.status(500).send(" blah No such footwear found")
-            }
-            qt = res.quantity;
-            res.status(200).send(event);
-        })
-        .catch((err) => {
-            res.status(500).send(' blah Error finding Footwear')
-        })
+        },
 
-    if(qt<0)
-        qt= 0 ;
-    Footwear.update({
+    }).then((ans) => {
+        console.log('Ans.Quantity');
+        console.log(ans.quantity);
+       qt = ans.quantity;
+        qt-- ;
+        if(qt<0)
+            qt =0 ;
+        console.log(qt);
+    }).catch((err) => {
+        console.log(err)
+        res.status(500).send("Error retrieving footwear")
+    });
+
+console.log('FINAL QUANT :'.qt);
+        Footwear.update({
 
             quantity:qt,
 
-            updatedAt: new Date(req.body.updatedAt )
+            updatedAt: new Date(req.body.updatedAt ),
 
 
         },
