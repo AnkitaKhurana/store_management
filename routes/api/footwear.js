@@ -163,13 +163,14 @@ route.put('/del/:id', authUtils.eli(), (req, res) => {
     })
         .then((res) => {
             if (!res) {
-                return res.status(500).send("No such footwear found")
+                console.log(res);
+                return res.status(500).send(" blah No such footwear found")
             }
-          //  qt = res.quantity;
+            qt = res.quantity;
             res.status(200).send(event);
         })
         .catch((err) => {
-            res.status(500).send('Error finding Footwear')
+            res.status(500).send(' blah Error finding Footwear')
         })
 
     if(qt<0)
@@ -178,7 +179,7 @@ route.put('/del/:id', authUtils.eli(), (req, res) => {
 
             quantity:qt,
 
-            updatedAt: new Date(req.body.updatedAt ),
+            updatedAt: new Date(req.body.updatedAt )
 
 
         },
