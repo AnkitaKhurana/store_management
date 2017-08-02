@@ -23,10 +23,10 @@ route.get('/:id', authUtils.eli(), (req, res) => {
         where: {
             f_id: req.params.id
         },
-        include: [{
-            model: Footwear,
-            attributes: ['username', 'email']
-        }]
+        // include: [{
+        //     model: User,
+        //     attributes: ['username', 'email']
+        // }]
     })
         .then((event) => {
             if (!event) {
@@ -155,10 +155,28 @@ route.put('/add/:id', authUtils.eli(), (req, res) => {
 });
 
 route.put('/del/:id', authUtils.eli(), (req, res) => {
+    let qt=0;
+    Footwear.findOne({
+        where: {
+            f_id: req.params.id
+        }
+    })
+        .then((res) => {
+            if (!res) {
+                return res.status(500).send("No such footwear found")
+            }
+          //  qt = res.quantity;
+            res.status(200).send(event);
+        })
+        .catch((err) => {
+            res.status(500).send('Error finding Footwear')
+        })
 
+    if(qt<0)
+        qt= 0 ;
     Footwear.update({
 
-            quantity:sequelize.literal('quantity -1'),
+            quantity:qt,
 
             updatedAt: new Date(req.body.updatedAt ),
 
