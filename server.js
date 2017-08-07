@@ -28,3 +28,5 @@ app.use('/', express.static(__dirname + "/public_static"));
 app.listen(3456, function () {
     console.log("Server started on http://localhost:3456");
 });
+
+//join React server

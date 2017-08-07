@@ -1,4 +1,4 @@
-var sequelize = require('sequelize');
+const sequelize = require('sequelize');
 const route = require('express').Router();
 const authUtils = require('../../auth/utils');
 const Footwear = require('../../db/models').Footwear;
@@ -155,10 +155,10 @@ route.put('/add/:id', authUtils.eli(), (req, res) => {
 });
 
 route.put('/del/:id', authUtils.eli(), (req, res) => {
+
+
      let qt;
     Footwear.findOne({
-
-
         where: {
             f_id: req.params.id
         },
@@ -171,33 +171,27 @@ route.put('/del/:id', authUtils.eli(), (req, res) => {
         if(qt<0)
             qt =0 ;
         console.log(qt);
+        Footwear.update({
+                quantity:qt,
+                updatedAt: new Date(req.body.updatedAt ),
+            },
+            {
+                where: {
+                    f_id: req.params.id
+                }
+            }).then((updatedShoe) => {
+                if (updatedShoe[0] == 0) {
+                    return res.status(403).send('Footwear does not exist, or you cannot edit it')
+                } else {
+                    res.status(200).send('Footwear successfully edited')
+                }
+
+            });
     }).catch((err) => {
         console.log(err)
         res.status(500).send("Error retrieving footwear")
     });
 
-console.log('FINAL QUANT :'.qt);
-        Footwear.update({
-
-            quantity:qt,
-
-            updatedAt: new Date(req.body.updatedAt ),
-
-
-        },
-        {
-            where: {
-                f_id: req.params.id
-
-            }
-        }).then((updatedShoe) => {
-        if (updatedShoe[0] == 0) {
-            return res.status(403).send('Footwear does not exist, or you cannot edit it')
-        } else {
-            res.status(200).send('Footwear successfully edited')
-        }
-
-    })
 });
 
 module.exports = route;
