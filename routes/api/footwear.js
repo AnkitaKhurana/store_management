@@ -21,6 +21,12 @@ route.get('/', authUtils.eli(), (req, res) => {
 
 });
 
+route.get('/', authUtils.eli(), (req, res) => {
+
+    res.render('new_footwear', { title: 'Elista'});
+
+
+});
 route.get('/:id', authUtils.eli(), (req, res) => {
     Footwear.findOne({
         where: {

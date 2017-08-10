@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<h1><%= title %></h1>
+<p> <%= title %></p>
+
+<form  method="post" action="http://localhost:3456/api/footwear/new">
+
+    <input type="text" name="article_no" placeholder="Article Number" required/>
+    <input type="text" name="colour" placeholder="Colour" required/>
+    <input type="text" name="size" placeholder="Size " required/>
+    <input type="text" name="category" placeholder="Category " required/>
+    <input type="text" name="brand" placeholder="Brand" required/>
+    <input type="text" name="type" placeholder="Type" required/>
+
+    <input type="text" name="material" placeholder="Material" required/>
+    <input type="text" name="colour" placeholder="Colour" required/>
+    <input type="text" name="size" placeholder="Size " required/>
+    <input type="text" name="category" placeholder="Category " required/>
+    <input type="text" name="size" placeholder="Size " required/>
+    <input type="text" name="category" placeholder="Category " required/>
+    <input type="number" name="quantity" placeholder="Quantity" required>
+    <input type="date" name="date_brought" placeholder="Date Brought" required>
+    <input type="date" name="date_sold" placeholder="Date Sold" required>
+
+
+
+
+    <input type="submit"/>
+
+
+</form>
+
+
+<ol id="blah">
+
+    <% for(i of todos)
+    {%>
+    <li>
+        <%=i%>
+    </li>
+    <%
+    }
+    %>
+    %>
+
+</ol>
+
+</body>
+</html>
