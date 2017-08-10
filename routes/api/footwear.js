@@ -21,7 +21,7 @@ route.get('/', authUtils.eli(), (req, res) => {
 
 });
 
-route.get('/', authUtils.eli(), (req, res) => {
+route.get('/new_footwear', authUtils.eli(), (req, res) => {
 
     res.render('new_footwear', { title: 'Elista'});
 
@@ -54,7 +54,7 @@ route.post('/new', authUtils.eli(), (req, res) => {
     if (!req.body.article_no) {
         return res.status(403).send('Event cannot created without article name')
     }
-
+    console.log(req.body);
     // YYYY-MM-DD'T'HH:MM
     Footwear.create({
         article_no : req.body.article_no,
@@ -73,8 +73,8 @@ route.post('/new', authUtils.eli(), (req, res) => {
 
     }).then((shoe) => {
 
-        //res.status(200).send(event)
-          res.status(200).send(shoe)
+       res.redirect('http://localhost:3456/api/footwear/');
+        //  res.status(200).send(shoe)
 
     }).catch((err) => {
         res.status(500).send(err.message)
