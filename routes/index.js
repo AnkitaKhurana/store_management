@@ -11,12 +11,12 @@ route.get('/', (req, res) => {
 
     // res.send(req.user);
 });
-
-route.get('/main', (req, res) => {
-    res.render('main', { title: 'Elista'});
-
-    // res.send(req.user);
-});
+//
+// route.get('/main', (req, res) => {
+//     res.render('main', { title: 'Elista'});
+//
+//     // res.send(req.user);
+// });
 
 
 route.post('/signup', (req, res) => {
@@ -32,7 +32,7 @@ route.post('/signup', (req, res) => {
 });
 
 route.post('/login', passport.authenticate('local', {
-    successRedirect: '/main',
+    successRedirect: '/api/footwear/',
     failureRedirect: '/'
 }));
 

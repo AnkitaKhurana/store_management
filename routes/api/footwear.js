@@ -10,12 +10,15 @@ route.get('/', authUtils.eli(), (req, res) => {
         attributes: ['f_id', 'article_no' ],
     })
         .then((c) => {
-            res.status(200).send(c)
+            res.render('main', { title: 'Elista',footwear : c});
+           // res.status(200).send(c)
         })
         .catch((err) => {
             console.log(err)
             res.status(500).send("Error retrieving footwear")
         })
+
+
 });
 
 route.get('/:id', authUtils.eli(), (req, res) => {
