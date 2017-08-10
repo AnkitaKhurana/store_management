@@ -12,6 +12,12 @@ route.get('/', (req, res) => {
     // res.send(req.user);
 });
 
+route.get('/main', (req, res) => {
+    res.render('main', { title: 'Elista'});
+
+    // res.send(req.user);
+});
+
 
 route.post('/signup', (req, res) => {
     User.create({
@@ -26,7 +32,7 @@ route.post('/signup', (req, res) => {
 });
 
 route.post('/login', passport.authenticate('local', {
-    successRedirect: '/profile',
+    successRedirect: '/main',
     failureRedirect: '/'
 }));
 
