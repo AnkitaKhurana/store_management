@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<h1><%= title %></h1>
+
+
+
+<form action="http://localhost:3456/login" method="post">
+    <input name="username" type="text" placeholder="username" required>
+    <br>
+    <input name="password" type="password" placeholder="password" required>
+    <br>
+    <input type="submit" value="Login">
+    <input type="submit" value="Get Token" formaction="http://localhost:3456/token">
+</form>
+
+
+
+
+</body>
+</html>

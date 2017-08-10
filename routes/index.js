@@ -6,8 +6,8 @@ const eli = require('../auth/utils').eli;
 const AuthToken = require('../db/models').AuthToken;
 const uid2 = require('uid2');
 
-route.get('/', eli('/login.html'), (req, res) => {
-    res.render('login', { title: 'footwear'});
+route.get('/', (req, res) => {
+    res.render('index', { title: 'Elista'});
 
     // res.send(req.user);
 });
@@ -27,7 +27,7 @@ route.post('/signup', (req, res) => {
 
 route.post('/login', passport.authenticate('local', {
     successRedirect: '/profile',
-    failureRedirect: '/login.html'
+    failureRedirect: '/'
 }));
 
 route.get('/logout', (req, res) => {
