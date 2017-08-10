@@ -6,6 +6,13 @@ const eli = require('../auth/utils').eli;
 const AuthToken = require('../db/models').AuthToken;
 const uid2 = require('uid2');
 
+route.get('/', eli('/login.html'), (req, res) => {
+    res.render('login', { title: 'footwear'});
+
+    // res.send(req.user);
+});
+
+
 route.post('/signup', (req, res) => {
     User.create({
         username: req.body.username,
