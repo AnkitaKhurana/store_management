@@ -6,7 +6,7 @@ const eli = require('../auth/utils').eli;
 const AuthToken = require('../db/models').AuthToken;
 const uid2 = require('uid2');
 
-route.get('/', (req, res) => {
+route.get('/',  (req, res) => {
     res.render('index', { title: 'Elista'});
 
     // res.send(req.user);
