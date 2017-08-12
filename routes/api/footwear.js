@@ -27,6 +27,32 @@ route.get('/new_footwear', authUtils.eli(), (req, res) => {
 
 
 });
+
+route.get('/edit_footwear/:id', authUtils.eli(), (req, res) => {
+
+
+
+
+
+    Footwear.findOne({
+        where: {
+            f_id: req.params.id
+        },
+
+    })
+        .then((event) => {
+            if (!event) {
+
+                return res.status(500).send("No such footwear found")
+            }
+            res.render('new_footwear', { title: 'Elista',data : event});
+           // res.status(200).send(event);
+        })
+        .catch((err) => {
+            res.status(500).send('Error finding Footwear')
+        })
+});
+
 route.get('/:id', authUtils.eli(), (req, res) => {
     Footwear.findOne({
         where: {
