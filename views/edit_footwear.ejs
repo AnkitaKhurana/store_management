@@ -10,7 +10,7 @@
 
 
 
-<form  method="post" action="http://localhost:3456/api/footwear/new">
+<form  method="put" action="http://localhost:3456/api/footwear/<%=data.f_id %>">
 
     Article Number <input type="text" name="article_no" placeholder="Article Number" value="<%=data.article_no %>" required/>
     <br>
@@ -20,7 +20,7 @@
     <br>
     Category<input type="text" name="category" placeholder="Category" value="<%=data.category %>" required/>
     <br>
-    Brand <input type="text" name="brand" placeholder="Brand"  value="<%=data.value %>" required/>
+    Brand <input type="text" name="brand" placeholder="Brand"  value="<%=data.brand %>" required/>
     <br>
     Type <input type="text" name="type" placeholder="Type" value="<%=data.type %>" required/>
     <br>
@@ -28,7 +28,7 @@
     <br>
     Quantity <input type="number" name="quantity" placeholder="Quantity" value="<%=data.quantity %>" required>
     <br>
-    Date Brought <input type="date" name="date_brought" placeholder="Date Brought" value="<%=data.date_brought%>" required>
+    Date Brought <input type="date" name="date_brought" placeholder="Date Brought" value="<%=JSON.stringify(data.date_brought)%>" required>
     <br>
     Date Sold<input type="date" name="date_sold" placeholder="Date Sold" value="<%=data.date_sold %>" required>
 

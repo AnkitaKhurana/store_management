@@ -138,7 +138,8 @@ route.put('/:id', authUtils.eli(), (req, res) => {
         if (updatedShoe[0] == 0) {
             return res.status(403).send('Footwear does not exist, or you cannot edit it')
         } else {
-            res.status(200).send('Footwear successfully edited')
+            res.redirect('http://localhost:3456/api/footwear/');
+           // res.status(200).send('Footwear successfully edited')
         }
 
     })
