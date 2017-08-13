@@ -109,7 +109,7 @@ route.post('/new', authUtils.eli(), (req, res) => {
 });
 
 
-route.put('/:id', authUtils.eli(), (req, res) => {
+route.post('/edit/:id', authUtils.eli(), (req, res) => {
     Footwear.update({
             article_no : req.body.article_no,
             category : req.body.category,
