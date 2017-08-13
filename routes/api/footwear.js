@@ -3,6 +3,9 @@ const route = require('express').Router();
 const authUtils = require('../../auth/utils');
 const Footwear = require('../../db/models').Footwear;
 const User = require('../../db/models').User;
+const moment = require('moment');
+
+
 
 route.get('/', authUtils.eli(), (req, res) => {
     console.log(req.user);
@@ -45,7 +48,7 @@ route.get('/edit_footwear/:id', authUtils.eli(), (req, res) => {
 
                 return res.status(500).send("No such footwear found")
             }
-           res.render('edit_footwear', {data : event,title: 'Elista'});
+           res.render('edit_footwear', {data : event,title: 'Elista',moment: moment});
            //res.status(200).send(JSON.stringify(event));
         })
         .catch((err) => {
@@ -166,7 +169,7 @@ route.get('/delete_footwear/:id', authUtils.eli(), (req, res) => {
 });
 
 
-route.put('/add/:id', authUtils.eli(), (req, res) => {
+route.get('/add/:id', authUtils.eli(), (req, res) => {
 
     Footwear.update({
 
@@ -185,13 +188,14 @@ route.put('/add/:id', authUtils.eli(), (req, res) => {
         if (updatedShoe[0] == 0) {
             return res.status(403).send('Footwear does not exist, or you cannot edit it')
         } else {
-            res.status(200).send('Footwear successfully edited')
+            res.redirect('http://localhost:3456/api/footwear/');
+            //res.status(200).send('Footwear successfully edited')
         }
 
     })
 });
 
-route.put('/del/:id', authUtils.eli(), (req, res) => {
+route.get('/del/:id', authUtils.eli(), (req, res) => {
 
 
      let qt;
@@ -220,7 +224,8 @@ route.put('/del/:id', authUtils.eli(), (req, res) => {
                 if (updatedShoe[0] == 0) {
                     return res.status(403).send('Footwear does not exist, or you cannot edit it')
                 } else {
-                    res.status(200).send('Footwear successfully edited')
+                    res.redirect('http://localhost:3456/api/footwear/');
+                    //res.status(200).send('Footwear successfully edited')
                 }
 
             });

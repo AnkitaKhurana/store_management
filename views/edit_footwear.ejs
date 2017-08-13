@@ -28,9 +28,9 @@
     <br>
     Quantity <input type="number" name="quantity" placeholder="Quantity" value="<%=data.quantity %>" required>
     <br>
-    Date Brought <input type="date" name="date_brought" placeholder="Date Brought" value="<%=JSON.stringify(data.date_brought)%>" required>
+    Date Brought <input type="date" name="date_brought" placeholder="Date Brought" value="<%=moment(data.date_brought).format( 'YYYY-MM-DD') %>" required>
     <br>
-    Date Sold<input type="date" name="date_sold" placeholder="Date Sold" value="<%=data.date_sold %>" required>
+    Date Sold<input type="date" name="date_sold" placeholder="Date Sold" value="<%=moment(data.date_sold).format( 'YYYY-MM-DD') %>" required>
 
 
 
