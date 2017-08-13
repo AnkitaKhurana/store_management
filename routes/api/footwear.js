@@ -147,7 +147,7 @@ route.post('/edit/:id', authUtils.eli(), (req, res) => {
 
 
 
-route.delete('/:id', authUtils.eli(), (req, res) => {
+route.get('/delete_footwear/:id', authUtils.eli(), (req, res) => {
    Footwear.destroy(
         {
             where: {
@@ -158,7 +158,8 @@ route.delete('/:id', authUtils.eli(), (req, res) => {
         if (destroyedRows == 0) {
             return res.status(403).send('Footwear does not exist, or you cannot edit it')
         } else {
-            res.status(200).send('Footwear successfully deleted')
+            res.redirect('http://localhost:3456/api/footwear/');
+           // res.status(200).send('Footwear successfully deleted')
         }
 
     })
