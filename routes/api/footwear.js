@@ -37,7 +37,7 @@ route.get('/edit_footwear/:id', authUtils.eli(), (req, res) => {
     Footwear.findOne({
         where: {
             f_id: req.params.id
-        },
+        }
 
     })
         .then((event) => {
@@ -45,8 +45,8 @@ route.get('/edit_footwear/:id', authUtils.eli(), (req, res) => {
 
                 return res.status(500).send("No such footwear found")
             }
-            res.render('new_footwear', { title: 'Elista',data : event});
-           // res.status(200).send(event);
+           res.render('edit_footwear', {data : event,title: 'Elista'});
+           //res.status(200).send(JSON.stringify(event));
         })
         .catch((err) => {
             res.status(500).send('Error finding Footwear')

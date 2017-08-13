@@ -1,28 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><%= title %></title>
+    <title> EDIT FOOTwear </title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 <body>
 <h1><%= title %></h1>
-<p> <%= title %></p>
+
+
 
 <form  method="post" action="http://localhost:3456/api/footwear/new">
 
-    Article Number<input type="text" name="article_no" placeholder="Article Number" value="<%=event.article_no %>" required/>
-    <input type="text" name="colour" placeholder="Colour" required/>
-    <input type="text" name="size" placeholder="Size " required/>
-    <input type="text" name="category" placeholder="Category " required/>
-    <input type="text" name="brand" placeholder="Brand" required/>
-    <input type="text" name="type" placeholder="Type" required/>
-
-    <input type="text" name="material" placeholder="Material" required/>
-
-    <input type="number" name="quantity" placeholder="Quantity" required>
-    <input type="date" name="date_brought" placeholder="Date Brought" required>
-    <input type="date" name="date_sold" placeholder="Date Sold" required>
+    Article Number <input type="text" name="article_no" placeholder="Article Number" value="<%=data.article_no %>" required/>
+    <br>
+    Colour <input type="text" name="colour" placeholder="Colour"  value="<%=data.colour %>" required/>
+    <br>
+    Size <input type="text" name="size" placeholder="Size " value="<%=data.size %>" required/>
+    <br>
+    Category<input type="text" name="category" placeholder="Category" value="<%=data.category %>" required/>
+    <br>
+    Brand <input type="text" name="brand" placeholder="Brand"  value="<%=data.value %>" required/>
+    <br>
+    Type <input type="text" name="type" placeholder="Type" value="<%=data.type %>" required/>
+    <br>
+    Material<input type="text" name="material" placeholder="Material" value="<%=data.material %>" required/>
+    <br>
+    Quantity <input type="number" name="quantity" placeholder="Quantity" value="<%=data.quantity %>" required>
+    <br>
+    Date Brought <input type="date" name="date_brought" placeholder="Date Brought" value="<%=data.date_brought%>" required>
+    <br>
+    Date Sold<input type="date" name="date_sold" placeholder="Date Sold" value="<%=data.date_sold %>" required>
 
 
 
