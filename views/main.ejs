@@ -15,15 +15,16 @@ Main EJS
     <% for(i of footwear)
     {%>
     <li>
-        <p><%=i.f_id %></p>
-        <p><%=i.quantity %></p>
-        <p><%=i.colour %></p>
-        <p><%=i.category %></p>
-        <p><%=i.size %></p>
-        <p><%=i.brand %></p>
-        <p><%=i.material %></p>
-        <p><%=i.article_no %></p>
-        <p><%=i.type %></p>
+        <p><%= JSON.stringify(i)%></p>
+        <p><%= i.f_id %></p>
+        <p><%= i.quantity %></p>
+        <p><%= i.colour %></p>
+        <p><%= i.category %></p>
+        <p><%= i.size %></p>
+        <p><%= i.brand %></p>
+        <p><%= i.material %></p>
+        <p><%= i.article_no %></p>
+        <p><%= i.type %></p>
 
         <button name="Edit" onclick="window.location.href='http://localhost:3456/api/footwear/edit_footwear/<%=i.f_id%>'">Edit </button>
         <button name="Delete" onclick="window.location.href='http://localhost:3456/api/footwear/delete_footwear/<%=i.f_id%>'">X</button>

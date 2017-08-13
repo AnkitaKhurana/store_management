@@ -10,7 +10,7 @@ const moment = require('moment');
 route.get('/', authUtils.eli(), (req, res) => {
     console.log(req.user);
     Footwear.findAll({
-        attributes: ['f_id', 'article_no' ],
+        attributes: ['f_id', 'article_no','type','size','quantity','colour' ,'brand','category','material' ],
     })
         .then((c) => {
             res.render('main', { title: 'Elista',footwear : c});
