@@ -32,7 +32,7 @@
     "ejs": "~2.5.6",
     "passport-http-bearer": "^1.0.1",
     "passport-local": "^1.0.0",
-    "sequelize": "^3.30.4",
+    "sequelize": "^6.3.3",
     "uid2": "0.0.3"
   }
 }
